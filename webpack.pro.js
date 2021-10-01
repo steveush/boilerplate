@@ -11,6 +11,6 @@ module.exports = {
     },
     output: {
         filename: "[name].js",
-        path: path.join(__dirname, "pro/assets/generated")
+        path: path.join(__dirname, "pro/assets")
     }
 };
