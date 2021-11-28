@@ -8,8 +8,10 @@
   "bugs": "https://github.com/steveush/boilerplate/issues",
   "author": "FooPlugins <info@fooplugins.com> (https://fooplugins.com)",
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
     "@wordpress/dependency-extraction-webpack-plugin": "^3.2.1",
     "@wordpress/scripts": "^18.0.1",
+    "classnames": "^2.3.1",
     "del": "^4.1.1",
     "gulp": "^4.0.2",
     "gulp-freemius-deploy": "^1.0.11",
@@ -20,8 +22,14 @@
   },
   "scripts": {
     "build": "npm run build:free && npm run build:pro",
-    "build:free": "wp-scripts build --config=./webpack.free.js",
-    "build:pro": "wp-scripts build --config=./webpack.pro.js",
+    "build:admin": "webpack build --config=./config/admin.js",
+    "build:admin-pro": "webpack build --config=./config/admin.pro.js",
+    "build:public": "webpack build --config=./config/public.js",
+    "build:public-pro": "webpack build --config=./config/public.pro.js",
+    "build:blocks": "wp-scripts build --config=./config/blocks.js",
+    "build:blocks-pro": "wp-scripts build --config=./config/blocks.pro.js",
+    "build:free": "npm run build:admin && npm run build:public && npm run build:blocks",
+    "build:pro": "npm run build:admin-pro && npm run build:public-pro && npm run build:blocks-pro",
     "package": "npm run build && gulp",
     "deploy": "gulp freemius-deploy"
   }
