@@ -1,14 +1,14 @@
 const __config = require("./__webpack");
 const path = require("path");
 module.exports = __config({
-    "foobox": "./src/public/core/index.js",
-    "foobox.wordpress": {
+    "core": "./src/public/core/index.js",
+    "core.wordpress": {
         import: "./src/public/wordpress/index.js",
-        dependOn: "foobox"
+        dependOn: "core"
     },
-    "foobox.ready": {
+    "core.ready": {
         import: "./src/public/ready.js",
-        dependOn: "foobox"
+        dependOn: "core"
     }
 }, {
     path: path.resolve(__dirname, "../assets/public"),
