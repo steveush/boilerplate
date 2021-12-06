@@ -12,14 +12,14 @@ import { select, subscribe } from '@wordpress/data';
 const { api } = wp;
 
 /**
- * @typedef {object} BOILERPLATE_SETTINGS
+ * @typedef {object} FOOPB_SETTINGS
  * @property {string} uid
  * @property {string} slug
  * @property {string} optionName
  * @property {string} textDomain
  */
 
-const CONFIG = global.BOILERPLATE_SETTINGS;
+const CONFIG = global.FOOPB_SETTINGS;
 
 class Settings extends Component {
     constructor() {

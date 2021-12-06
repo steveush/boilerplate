@@ -1,0 +1,26 @@
+{
+  "name": "fooplugins/boilerplate",
+  "description": "WordPress plugin boilerplate",
+  "type": "library",
+  "require": {
+    "composer/installers": "v1.0.12"
+  },
+  "autoload"    : {
+    "files": [
+      "includes/utils/arrays.php"
+    ],
+    "psr-4" : {
+      "FooPlugins\\Boilerplate\\" : "includes"
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      "vendor/{$name}/": ["type:wordpress-plugin"]
+    }
+  },
+  "license": "GPL 3.0",
+  "authors": [
+    { "name": "Brad Vincent" },
+    { "name": "Steve Usher" }
+  ]
+}
