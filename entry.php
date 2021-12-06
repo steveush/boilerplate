@@ -49,6 +49,4 @@ require_once( DIR_PATH . 'constants.php' );
 
 require_once( DIR_PATH . 'autoloader.php' );
 
-$instance = Plugin::getInstance();
-
-$text = $instance->text;
+Plugin::getInstance();

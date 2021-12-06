@@ -2,6 +2,7 @@
 
 namespace Boilerplate;
 
+use Boilerplate\traits\WithSettings;
 use Boilerplate\traits\WithSingleton;
 
 /**
@@ -10,13 +11,19 @@ use Boilerplate\traits\WithSingleton;
  * @implements WithSingleton<Plugin>
  */
 class Plugin {
-    use WithSingleton;
-
-    public $settings;
+    use WithSingleton, WithSettings;
 
     public function __construct() {
-        $this->settings = Settings::getInstance();
+        add_action( 'init', array( $this, 'init' ) );
     }
 
-    public $text = 'This is some text';
+    public function init(){
+
+        $theme = $this->get_option( "style.theme" );
+
+        $this->set_option( "style.theme", "flat" );
+
+        $t = '';
+
+    }
 }
