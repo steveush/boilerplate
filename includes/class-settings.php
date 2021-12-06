@@ -54,13 +54,21 @@ class Settings {
     	return $this->_defaults;
     }
 
-	private $_schema;
-	private function get_schema() {
-		if ( !isset( $this->_schema ) ) {
-			$this->_schema = require_once( BASE_PATH . 'includes/constants/SETTINGS_SCHEMA.php' );
-		}
-		return $this->_schema;
-	}
+    private $_schema;
+    private function get_schema() {
+        if ( !isset( $this->_schema ) ) {
+            $this->_schema = require_once( BASE_PATH . 'includes/constants/SETTINGS_SCHEMA.php' );
+        }
+        return $this->_schema;
+    }
+
+    private $_ui;
+    private function get_ui() {
+        if ( !isset( $this->_ui ) ) {
+            $this->_ui = require_once( BASE_PATH . 'includes/constants/SETTINGS_UI.php' );
+        }
+        return $this->_ui;
+    }
 
     /**
      * Adds an option page for the settings to render within.
@@ -96,7 +104,7 @@ class Settings {
         wp_enqueue_style(
             $this->SLUG,
             $url . '.css',
-            [],
+            [ 'wp-components' ],
             $asset["version"]
         );
 
@@ -111,17 +119,17 @@ class Settings {
         );
 
 	    $js_variable = strtoupper( $this->SLUG );
+        $js_config = array_merge( $this->get_ui(), [
+            'uid' => $this->UID,
+            'slug' => $this->SLUG,
+            'optionName' => $this->OPTION_NAME
+        ] );
 
         // Enqueue any additional configuration for the front end
         wp_localize_script(
             $this->SLUG,
-	        $js_variable,
-            apply_filters( $this->SLUG, [
-                'uid' => $this->UID,
-                'slug' => $this->SLUG,
-                'optionName' => $this->OPTION_NAME,
-                'textDomain' => SLUG
-            ] )
+            $js_variable,
+            apply_filters( $this->SLUG, $js_config )
         );
     }
 

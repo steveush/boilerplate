@@ -1,32 +1,40 @@
-<?php namespace Boilerplate;
-
-$theme_options = array(
-    array(
-        'title' => __( 'Modern', TEXT_DOMAIN ),
-        'value' => 'modern'
-    ),
-    array(
-        'title' => __( 'Classic', TEXT_DOMAIN ),
-        'value' => 'classic'
-    ),
-    array(
-        'title' => __( 'Metro', TEXT_DOMAIN ),
-        'value' => 'metro'
-    ),
-    array(
-        'title' => __( 'Flat', TEXT_DOMAIN ),
-        'value' => 'flat'
-    ),
-    array(
-        'title' => __( 'Customize', TEXT_DOMAIN ),
-        'value' => 'custom'
-    )
-);
-
-return array(
-    'title' => __( 'Boilerplate Settings', TEXT_DOMAIN ),
-    'description' => __( 'Configure the global defaults for the various plugin options.', TEXT_DOMAIN ),
-    'settings' => array(
-
+<?php return array(
+    'title' => __( 'Boilerplate Settings', 'foobp' ),
+    'description' => __( 'Configure the global defaults for the various plugin options.', 'foobp' ),
+    'tabs' => array(
+        array(
+            'type' => 'tab',
+            'name' => 'style',
+            'title' => __( 'Style', 'foobp' ),
+            'children' => array(
+                array(
+                    'type' => 'radio',
+                    'name' => 'style.theme',
+                    'label' => __( 'Theme', 'foobp' ),
+                    'options' => array(
+                        array(
+                            'label' => __( 'Modern', 'foobp' ),
+                            'value' => 'modern'
+                        ),
+                        array(
+                            'label' => __( 'Classic', 'foobp' ),
+                            'value' => 'classic'
+                        ),
+                        array(
+                            'label' => __( 'Metro', 'foobp' ),
+                            'value' => 'metro'
+                        ),
+                        array(
+                            'label' => __( 'Flat', 'foobp' ),
+                            'value' => 'flat'
+                        ),
+                        array(
+                            'label' => __( 'Customize', 'foobp' ),
+                            'value' => 'custom'
+                        )
+                    )
+                )
+            )
+        )
     )
 );

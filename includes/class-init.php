@@ -13,7 +13,7 @@ use FooPlugins\PluginBoilerplate\Traits\With_Singleton;
 if ( !class_exists( 'FooPlugins\PluginBoilerplate\Init' ) ) {
 
 	class Init {
-		use With_Singleton, With_Settings;
+		use With_Singleton;
 
 		/**
 		 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -24,13 +24,15 @@ if ( !class_exists( 'FooPlugins\PluginBoilerplate\Init' ) ) {
 //				load_plugin_textdomain( FOOBAR_SLUG, false, plugin_basename( FOOBAR_FILE ) . '/languages/' );
 //			} );
 
+            Settings::get_instance();
+
 			if ( is_admin() ) {
 				//namespace\Admin\Init::get_instance();
 			} else {
 				//new namespace\Front\Init();
 			}
 
-			add_action( 'init', array( $this, 'test' ) );
+//			add_action( 'init', array( $this, 'test' ) );
 		}
 
 		public function test(){
