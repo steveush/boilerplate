@@ -79,7 +79,7 @@ function Settings(){
     // create utility getter/setter functions to pass to child components
     const fp_default = ( path ) => getProperty( CONFIG.defaults, path );
     const fp_initial = ( path ) => getProperty( persisted, path );
-    const fp_get = ( path ) => getProperty( options, path );
+    const fp_get = ( path ) => getProperty( options, path, fp_default( path ) );
     const fp_set = ( path, value ) => {
         const current = fp_get( path );
         if ( !isEqual( current, value ) ){

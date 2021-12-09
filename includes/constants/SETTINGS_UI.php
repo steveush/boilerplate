@@ -68,6 +68,7 @@
                     'title' => __( 'Advanced', 'foobp' ),
                     'fp_components' => array(
                         array(
+                            'fp_ui' => 'something-panel-is-open',
                             'fp_type' => 'panel',
                             'title' => __( 'Something', 'foobp' ),
                             'icon' => 'admin-generic',
