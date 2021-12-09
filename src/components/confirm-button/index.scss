@@ -1,0 +1,15 @@
+.fp-confirm-button__modal {
+  .fp-confirm-button__modal-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 24px;
+
+    .components-button {
+      margin-right: 6px;
+
+      &:first-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}

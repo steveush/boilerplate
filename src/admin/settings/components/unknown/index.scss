@@ -1,0 +1,38 @@
+.fp-settings-unknown {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  border: solid 1px #cc1818;
+  flex-direction: column;
+
+  .fp-settings-unknown__title {
+    color: #ffffff;
+    background-color: #cc1818;
+    padding: 12px;
+  }
+
+  .fp-settings-unknown__component {
+    position: relative;
+    padding: 10px;
+    max-height: 300px;
+    overflow: auto;
+    margin: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #f0f0f1;
+
+    &:before {
+      content: "component";
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #fff;
+      padding: 2px 6px;
+      border-bottom-left-radius: 6px;
+      border-left: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  }
+}

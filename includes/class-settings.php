@@ -104,7 +104,7 @@ class Settings {
         wp_enqueue_style(
             $this->SLUG,
             $url . '.css',
-            [ 'wp-components' ],
+            [ 'dashicons', 'wp-components' ],
             $asset["version"]
         );
 
@@ -120,9 +120,11 @@ class Settings {
 
 	    $js_variable = strtoupper( $this->SLUG );
         $js_config = array_merge( $this->get_ui(), [
+            'version' => VERSION,
             'uid' => $this->UID,
             'slug' => $this->SLUG,
-            'optionName' => $this->OPTION_NAME
+            'optionName' => $this->OPTION_NAME,
+            'defaults' => $this->get_defaults()
         ] );
 
         // Enqueue any additional configuration for the front end

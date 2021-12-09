@@ -1,0 +1,21 @@
+.fp-settings-radio {
+
+  // By default the WordPress RadioControl only supports vertical layout so we added an "orientation" prop
+  // that outputs its value as a class name so we can change the layout.
+  &.horizontal {
+
+    .components-base-control__field {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .components-base-control__label {
+        flex-basis: 100%;
+        max-width: 100%;
+        margin-right: 0;
+      }
+    }
+
+  }
+
+}
