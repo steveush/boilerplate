@@ -2,7 +2,8 @@ import { useEffect, useState } from "@wordpress/element";
 import { cloneDeep, get as getProperty, has as hasProperty, isEqual, set as setProperty } from "lodash";
 
 // the NPM package @wordpress/api is no longer available so wp-api has been manually included in the scripts dependencies
-const { api } = wp;
+//const { api } = wp;
+import api from "@wordpress/api";
 
 /**
  * React hook that wraps working with the WP Backbone API settings in our plugins.

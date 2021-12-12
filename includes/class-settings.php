@@ -112,8 +112,7 @@ class Settings {
         wp_enqueue_script(
             $this->SLUG,
             $url . '.js',
-            // the wp-api is a Backbone dependency, we need to merge it into the deps as it's not auto-included in the *.asset.php file
-            array_merge( $asset["dependencies"], [ 'wp-api' ] ),
+            $asset["dependencies"],
             $asset["version"],
             true // Enqueue the script in the footer.
         );
