@@ -48,14 +48,18 @@ function array_property( $key ){
  *
  * @param array         $root          The root array to interrogate.
  * @param array         $path          An array containing the individual path segments to retrieve.
+ * @param bool          $create        If set to true the path will be created if it does not exist.
  *
  * @return array|false
  */
-function &array_path( &$root, $path ){
+function &array_path( &$root, $path, $create = false ){
     $target = &$root;
     if ( is_array( $path ) ){
         foreach ( $path as $segment ){
             if ( array_key_exists( $segment, $target ) ){
+                $target = &$target[ $segment ];
+            } else if ( $create ) {
+                $target[ $segment ] = array();
                 $target = &$target[ $segment ];
             } else {
                 // required to set a variable as its ref returned.
@@ -97,9 +101,9 @@ function &array_get( &$fromArray, $key, $default = null ){
 function array_set( &$toArray, $key, $value ){
     $property = array_property( $key );
     if ( $property !== false ) {
-        $path = &array_path( $toArray, $property[ 'path' ] );
-        if ( $path !== false && array_key_exists( $property[ 'key' ], $path ) ){
-            if ( $value !== $path[ $property[ 'key' ] ] ){
+        $path = &array_path( $toArray, $property[ 'path' ], true );
+        if ( $path !== false ){
+            if ( !array_key_exists( $property[ 'key' ], $path ) || $value !== $path[ $property[ 'key' ] ] ){
                 $path[ $property[ 'key' ] ] = $value;
                 return true;
             }

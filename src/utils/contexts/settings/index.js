@@ -1,5 +1,6 @@
 import { createContext, useContext } from "@wordpress/element";
 import { useSettings } from "../../hooks";
+import { noop } from "lodash";
 
 const noContextError = () => { throw Error( 'No settings context.' ); };
 const noContextReject = () => Promise.reject('No settings context.');
@@ -45,15 +46,26 @@ export function useSettingsContext(){
  *
  * @param {string} optionName - The "option_name" used to "register_settings" on the server.
  * @param {object} defaults - The default values for the settings.
+ * @param {function(Error):JSX.Element} [onDidCatch] - A callback to handle and render errors. If not supplied the default is to simply log the error to the console and render nothing.
  * @returns {JSX.Element}
  * @constructor
  */
-export const SettingsProvider = ({ optionName, defaults, children }) => {
+export const SettingsProvider = ({
+                                     optionName,
+                                     defaults,
+                                     onDidCatch = ( error ) => {
+                                         console.error( error );
+                                         return null;
+                                     },
+                                     children
+}) => {
 
-    const settingsApi = useSettings( optionName, defaults );
-
+    const [ state, actions ] = useSettings( optionName, defaults );
+    if ( state.hasError ){
+        return onDidCatch( actions.getLastError() );
+    }
     return (
-        <SettingsContext.Provider value={ settingsApi }>
+        <SettingsContext.Provider value={ [ state, actions ] }>
             { children }
         </SettingsContext.Provider>
     );

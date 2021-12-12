@@ -4,11 +4,12 @@ import { render } from "@wordpress/element";
 
 import { createLocalState } from "./utils";
 import { useSnackbar } from "./hooks/use-snackbar";
-import { SettingsProvider } from "../../utils";
+import { ErrorBoundary, SettingsProvider } from "../../utils";
 
 import SettingsHeader from "./settings-header";
 import SettingsMain from "./settings-main";
 import SettingsActions from "./settings-actions";
+import SettingsError from "./components/error";
 
 const CONFIG = global.FOOPB_SETTINGS;
 
@@ -21,8 +22,17 @@ export const [
 
 function SettingsContainer(){
     const { UIComponent: SnackbarUI } = useSnackbar();
+
+    const onError = ( error ) => {
+        return (<SettingsError error={ error } />);
+    };
+
     return (
-        <SettingsProvider optionName={ SETTINGS_CONFIG.optionName } defaults={ SETTINGS_CONFIG.defaults } >
+        <SettingsProvider
+            optionName={ SETTINGS_CONFIG.optionName }
+            defaults={ SETTINGS_CONFIG.defaults }
+            onDidCatch={ onError }
+        >
             <SettingsHeader
                 icon={ SETTINGS_CONFIG?.icon }
                 version={ SETTINGS_CONFIG.version }

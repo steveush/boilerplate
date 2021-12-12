@@ -1,7 +1,7 @@
 import "./settings-main.scss";
 
 import { Fragment } from "@wordpress/element";
-import { isArray } from "lodash";
+import { isArray, isString } from "lodash";
 import { Spinner } from "@wordpress/components";
 import { ErrorBoundary, useSettingsContext } from "../../utils";
 import {
@@ -17,6 +17,23 @@ import {
 export default function SettingsMain({ components }){
 
     const [ { isLoaded } ] = useSettingsContext();
+
+    const hashCode = ( str ) => {
+        let hash = 0;
+        if (str.length === 0) {
+            return hash;
+        }
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash<<5)-hash)+char;
+            hash = hash & hash; // Convert to 32bit integer
+        }
+        return hash;
+    };
+
+    const getUid = ( component ) => {
+        return String( hashCode( JSON.stringify( component ) ) );
+    };
 
     /**
      * Recursively renders the supplied component configurations and is passed down as a prop to each so
@@ -39,9 +56,15 @@ export default function SettingsMain({ components }){
         // we're actually dealing with a single component
         const component = components;
 
+        let key = component?.fp_key;
+        if ( !isString( key ) ){
+            key = getUid( component );
+        }
+
         // create the props to pass to use for rendering
         const props = {
             ...component,
+            key,
             renderComponents
         };
 
@@ -73,7 +96,7 @@ export default function SettingsMain({ components }){
         };
 
         return (
-            <ErrorBoundary onError={ onError }>
+            <ErrorBoundary key={key} onError={ onError }>
                 { renderComponent() }
             </ErrorBoundary>
         );

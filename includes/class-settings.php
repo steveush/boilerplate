@@ -45,12 +45,24 @@ class Settings {
 	    }
 
     	if ( $result['migrated'] ) {
-    		$value = $result['value'];
-    		delete_option( $this->OPTION_NAME );
-    		add_option( $this->OPTION_NAME, $value );
+
+            $is_valid = $this->validate( $result['value'] );
+            if ( $is_valid === true ){
+                // only update the options if the migrated value passes schema validation.
+                $value = $result['value'];
+                delete_option( $this->OPTION_NAME );
+                add_option( $this->OPTION_NAME, $value );
+            } else {
+                // todo: $is_valid should be a WP_Error containing details, handle it in some way here
+            }
+
 	    }
 
     	return $value;
+    }
+
+    public function validate( $options ){
+        return rest_validate_value_from_schema( $options, $this->get_schema()[ 'schema' ], $this->OPTION_NAME );
     }
 
     //endregion

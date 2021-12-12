@@ -19,8 +19,7 @@ function migrate_to_version_2( $migration, $defaults ) {
 		// Make sure someTextOption is set to something.
 		$someTextOption = array_get( $value, 'general.someTextOption', $someTextOption_default );
 		if ( strlen( $someTextOption ) <= 1 ) {
-			$someTextOption = $someTextOption_default;
-			if ( array_set( $value, 'general.someTextOption', $someTextOption ) ) {
+			if ( array_set( $value, 'general.someTextOption', $someTextOption_default ) ) {
 				// Update the version so that this migration does not run again.
 				$value['version'] = 2;
 

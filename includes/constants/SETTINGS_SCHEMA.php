@@ -2,6 +2,10 @@
     'schema' => array(
         'type' => 'object',
         'properties' => array(
+            'version' => array(
+                'type' => 'integer',
+                'required' => true
+            ),
 	        'general' => array(
 		        'type' => 'object',
 		        'required' => true,

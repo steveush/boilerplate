@@ -1,5 +1,5 @@
 import { useEffect, useState } from "@wordpress/element";
-import { cloneDeep, get as getProperty, has as hasProperty, isEqual, set as setProperty } from "lodash";
+import { cloneDeep, get as getProperty, has as hasProperty, isEqual, isObject, set as setProperty } from "lodash";
 
 // the NPM package @wordpress/api is no longer available so wp-api has been manually included in the scripts dependencies
 //const { api } = wp;
@@ -22,9 +22,16 @@ export default function useSettings( optionName, defaults ){
     const [ currentOptions, setCurrentOptions ] = useState( null );
     const [ persistedOptions, setPersistedOptions ] = useState( null );
 
+    const [ hasError, setHasError ] = useState( false );
+    const [ lastError, setLastError ] = useState( null );
+
     const [ isLoaded, setIsLoaded ] = useState( false );
     const [ hasChanges, setHasChanges ] = useState( false );
     const [ canReset, setCanReset ] = useState( false );
+
+    useEffect( () => {
+        setHasError( lastError !== null );
+    }, [ lastError ] );
 
     // sync up the canReset and currentOptions values whenever the defaults or persistedOptions change
     useEffect( () => {
@@ -46,13 +53,20 @@ export default function useSettings( optionName, defaults ){
     useEffect( () => {
         api.loadPromise.then( () => {
             const settings = new api.models.Settings();
-            settings.fetch().then( ( response ) => {
-                if ( hasProperty( response, optionName ) ){
-                    setPersistedOptions( cloneDeep( response[ optionName ] ) );
+            return settings.fetch();
+        } ).then( ( response ) => {
+            if ( hasProperty( response, optionName ) ){
+                const options = getProperty( response, optionName );
+                if ( isObject( options ) ){
+                    setPersistedOptions( cloneDeep( options ) );
                     setIsLoaded( true );
+                    return;
                 }
-                throw new Error( `SettingsError: No '${optionName}' option in response.` );
-            } );
+                throw new Error( `Unexpected response for '${optionName}'. Expected an options 'object', received '${String(options)}'.` );
+            }
+            throw new Error( `No '${optionName}' option in response.` );
+        } ).catch( ( error ) => {
+            setLastError( error )
         } );
     }, [ optionName ] );
 
@@ -122,11 +136,15 @@ export default function useSettings( optionName, defaults ){
         return true;
     };
 
+    const getLastError = () => lastError;
+    const clearLastError = () => setLastError( null );
+
     return [
         /** @type {useSettings~State} */ {
             isLoaded,
             hasChanges,
-            canReset
+            canReset,
+            hasError,
         },
         /** @type {useSettings~Actions} */ {
             getValue,
@@ -137,7 +155,9 @@ export default function useSettings( optionName, defaults ){
             setToDefault,
             save,
             reset,
-            discard
+            discard,
+            getLastError,
+            clearLastError
         }
     ];
 }
