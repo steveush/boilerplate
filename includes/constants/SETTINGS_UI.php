@@ -16,7 +16,19 @@
                             'title' => __( 'General', 'foobp' ),
                             'icon' => 'admin-generic',
                             'initialOpen' => false,
-                            'fp_components' => array()
+                            'fp_components' => array(
+	                            array(
+		                            'fp_type' => 'panel-row',
+		                            'fp_components' => array(
+			                            array(
+				                            'fp_key' => 'general.someTextOption',
+				                            'fp_type' => 'text',
+				                            'label' => __( 'Some Text', 'foobp' ),
+				                            'help' => __( 'Enter some text. It is required!', 'foopb' ),
+			                            )
+		                            )
+	                            )
+                            )
                         ),
                         array(
                             'fp_ui' => 'appearance-panel-is-open',
