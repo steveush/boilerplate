@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { useUIState } from "../../index";
 import { useInstanceId } from "@wordpress/compose";
 
-function SettingsPanel( {
+export default function SettingsPanel( {
                             header,
                             className,
                             initialOpen,
@@ -48,5 +48,3 @@ function SettingsPanel( {
         </Panel>
     );
 }
-
-export default SettingsPanel;

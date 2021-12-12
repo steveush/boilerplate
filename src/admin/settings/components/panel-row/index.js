@@ -2,7 +2,7 @@ import { PanelRow } from "@wordpress/components";
 import { noop } from "lodash/util";
 import classNames from "classnames";
 
-function SettingsPanelRow( {
+export default function SettingsPanelRow( {
                                className,
                                fp_components = [],
                                renderComponents = noop,
@@ -14,5 +14,3 @@ function SettingsPanelRow( {
         </PanelRow>
     );
 }
-
-export default SettingsPanelRow;

@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { useInstanceId } from "@wordpress/compose";
 import { useUIState } from "../../index";
 
-function SettingsTabs( {
+export default function SettingsTabs( {
                            className,
                            tabs = [],
                            initialTabName,
@@ -35,5 +35,3 @@ function SettingsTabs( {
         </TabPanel>
     );
 }
-
-export default SettingsTabs;

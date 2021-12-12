@@ -4,7 +4,7 @@ import { RadioControl } from "@wordpress/components";
 import classNames from "classnames";
 import { useSettingsContext } from "../../../../utils";
 
-function SettingsRadio( {
+export default function SettingsRadio( {
                             className,
                             orientation = "horizontal",
                             fp_key,
@@ -24,5 +24,3 @@ function SettingsRadio( {
         />
     );
 }
-
-export default SettingsRadio;
