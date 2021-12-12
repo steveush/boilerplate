@@ -1,0 +1,14 @@
+.fp-settings-actions {
+  max-width: var( --fp-settings-content-width );
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 24px auto;
+
+  .components-button {
+    margin-right: 6px;
+
+    &:first-of-type {
+      margin-right: 0;
+    }
+  }
+}

@@ -2,22 +2,25 @@ import "./index.scss";
 
 import { RadioControl } from "@wordpress/components";
 import classNames from "classnames";
-import { noop } from "lodash/util";
+import { useSettingsContext } from "../../../../utils";
 
 function SettingsRadio( {
                             className,
                             orientation = "horizontal",
                             fp_key,
-                            fp_get = noop,
-                            fp_set = noop,
                             ...props
                         } ) {
+
+    const [ { isLoaded }, { getValue, setValue } ] = useSettingsContext();
+
+    if ( !isLoaded ) return null;
+
     return (
         <RadioControl
             { ...props }
             className={ classNames( 'fp-settings-radio', className, orientation ) }
-            selected={ fp_get( fp_key ) }
-            onChange={ ( value ) => fp_set( fp_key, value ) }
+            selected={ getValue( fp_key ) }
+            onChange={ ( value ) => setValue( fp_key, value ) }
         />
     );
 }

@@ -9,11 +9,11 @@ import { Fragment, useState } from "@wordpress/element";
 function ConfirmButton( {
                             className,
                             children,
-                            dialogTitle = __( 'Confirm action', 'foopb' ),
+                            dialogTitle,
                             dialogMessage = __( 'Are you sure?', 'foopb' ),
                             showCancel = true,
                             cancelText = __( 'Cancel', 'foopb' ),
-                            confirmText = __( 'Confirm', 'foopb' ),
+                            confirmText = __( 'Yes', 'foopb' ),
                             onClick = noop,
                             onConfirmClick = noop,
                             ...props

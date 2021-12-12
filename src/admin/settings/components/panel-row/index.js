@@ -5,12 +5,12 @@ import classNames from "classnames";
 function SettingsPanelRow( {
                                className,
                                fp_components = [],
-                               fp_render = noop,
+                               renderComponents = noop,
                                ...props
                            } ) {
     return (
-        <PanelRow className={ classNames( 'fp-settings-panel-row', className ) }>
-            { fp_render( fp_components ) }
+        <PanelRow className={ classNames( 'fp-settings-panel-row', className ) } { ...props }>
+            { renderComponents( fp_components ) }
         </PanelRow>
     );
 }

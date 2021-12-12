@@ -11,7 +11,7 @@ function SettingsTabs( {
                            tabs = [],
                            initialTabName,
                            fp_ui,
-                           fp_render = noop,
+                           renderComponents = noop,
                            onSelect = noop,
                            ...props
                        } ) {
@@ -31,7 +31,7 @@ function SettingsTabs( {
             } }
             { ...props }
         >
-            { ( tab ) => fp_render( tab?.fp_components ) }
+            { ( tab ) => renderComponents( tab?.fp_components ) }
         </TabPanel>
     );
 }

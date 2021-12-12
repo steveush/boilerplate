@@ -1,0 +1,48 @@
+.fp-settings-header {
+  background-color: #ffffff;
+  box-shadow: 0 1px 0 rgba(213, 213, 213, .5), 0 1px 2px #eeeeee;
+  margin-left: -2em;
+  padding: 20px 10px 48px;
+
+  .fp-settings-header__inner {
+    margin: 0 auto;
+    max-width: var( --fp-settings-content-width );
+
+    .fp-settings-header__title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > h1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-items: center;
+
+        .dashicon {
+          color: #757575;
+          width: 32px;
+          height: 32px;
+          font-size: 32px;
+          margin-right: 6px;
+        }
+      }
+
+      .fp-settings-header__version {
+        box-shadow: 0 0 2px 0 rgba(0,0,0,0.75);
+        padding: 13px 10px 10px;
+        font-family: Courier, "Courier New", monospace;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 6px;
+        margin-left: 24px;
+      }
+    }
+
+    .fp-settings-header__description {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

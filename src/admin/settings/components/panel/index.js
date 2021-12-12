@@ -13,7 +13,7 @@ function SettingsPanel( {
                             iconPosition = 'left',
                             fp_ui,
                             fp_components = [],
-                            fp_render = noop,
+                            renderComponents = noop,
                             onToggle = noop,
                             ...props
                         } ) {
@@ -36,14 +36,14 @@ function SettingsPanel( {
     if ( !header ) {
         return (
             <PanelBody { ...bodyProps }>
-                { fp_render( fp_components ) }
+                { renderComponents( fp_components ) }
             </PanelBody>
         );
     }
     return (
         <Panel className={ classNames( 'fp-settings-panel', className ) } header={ header }>
             <PanelBody { ...bodyProps }>
-                { fp_render( fp_components ) }
+                { renderComponents( fp_components ) }
             </PanelBody>
         </Panel>
     );
