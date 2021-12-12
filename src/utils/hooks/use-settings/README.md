@@ -187,13 +187,13 @@ export default function MyCheckbox() {
     // get the required state and actions
     const [
         // state
-        { isLoading },
+        { isLoaded },
         // actions
         { getValue, setValue }
     ] = useSettings( optionName, defaults );
 
     // do nothing before the settings are loaded, this could instead render a placeholder etc.
-    if ( isLoading ) {
+    if ( !isLoaded ) {
         return null;
     }
 
@@ -222,13 +222,13 @@ export default function MyTextbox() {
     // get the required state and actions
     const [
         // state
-        { isLoading },
+        { isLoaded },
         // actions
         { getValue, setValue, getDefault, getInitial }
     ] = useSettings( optionName, defaults );
 
     // do nothing before the settings are loaded, this could instead render a placeholder etc.
-    if ( isLoading ) {
+    if ( !isLoaded ) {
         return null;
     }
     
@@ -264,7 +264,7 @@ export default function MySettings() {
     const [
         // state
         {
-            isLoading,
+            isLoaded,
             hasChanges,
             canReset
         },
@@ -281,7 +281,7 @@ export default function MySettings() {
     ] = useSettings( optionName, defaults );
 
     // do nothing before the settings are loaded, this could instead render a placeholder etc.
-    if ( isLoading ) {
+    if ( !isLoaded ) {
         return null;
     }
 

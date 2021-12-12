@@ -145,7 +145,7 @@ export default function useSettings( optionName, defaults ){
 
 /**
  * @typedef {object} useSettings~State
- * @property {boolean} [isLoading=false] - Whether or not the WP Api is currently loading the settings.
+ * @property {boolean} [isLoaded=false] - Whether or not the WP Api is currently loading the settings.
  * @property {boolean} [hasChanges=false] - Whether or not the current options have any changes compared to the last saved state.
  * @property {boolean} [canReset=false] - Whether or not the current options can be reset back to the defaults.
  */
