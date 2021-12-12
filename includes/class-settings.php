@@ -26,9 +26,31 @@ class Settings {
     public function __construct() {
         add_action( 'admin_init', array( $this, 'register' ) );
         add_action( 'rest_api_init', array( $this, 'register' ) );
+	    add_filter( 'option_' . $this->OPTION_NAME, array( $this, 'migrate_options' ), 10, 2 );
 
         add_action( 'admin_menu', array( $this, 'add_option_page' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ), 10 );
+    }
+
+    function migrate_options( $value, $option ) {
+	    $defaults = $this->get_defaults();
+
+	    $result = array(
+		    'migrated' => false,
+		    'value' => $value
+	    );
+
+    	foreach( $this->get_migrations() as $migration ) {
+		    $result = call_user_func( $migration, $result, $defaults );
+	    }
+
+    	if ( $result['migrated'] ) {
+    		$value = $result['value'];
+    		delete_option( $this->OPTION_NAME );
+    		add_option( $this->OPTION_NAME, $value );
+	    }
+
+    	return $value;
     }
 
     //endregion
@@ -45,6 +67,14 @@ class Settings {
             'type' => 'object'
         ] );
     }
+
+	private $_migrations;
+	private function get_migrations() {
+		if ( !isset( $this->_migrations ) ) {
+			$this->_migrations = require_once( BASE_PATH . 'includes/constants/SETTINGS_MIGRATIONS.php' );
+		}
+		return $this->_migrations;
+	}
 
     private $_defaults;
     private function get_defaults() {

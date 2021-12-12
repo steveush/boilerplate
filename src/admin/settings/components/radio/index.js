@@ -3,11 +3,13 @@ import "./index.scss";
 import { RadioControl } from "@wordpress/components";
 import classNames from "classnames";
 import { useSettingsContext } from "../../../../utils";
+import {noop} from "lodash/util";
 
 export default function SettingsRadio( {
                             className,
                             orientation = "horizontal",
                             fp_key,
+                            renderComponents = noop,
                             ...props
                         } ) {
 

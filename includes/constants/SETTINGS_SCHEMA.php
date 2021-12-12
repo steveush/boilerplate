@@ -18,7 +18,7 @@
                 'properties' => array(
                     'theme' => array(
                         'type' => 'string',
-                        'enum' => array( 'modern', 'classic', 'metro', 'flat' )
+                        'enum' => array( 'modern', 'classic', 'metro', 'flat', 'custom' )
                     )
                 )
             ),
