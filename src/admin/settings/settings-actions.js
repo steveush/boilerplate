@@ -43,7 +43,6 @@ export default function SettingsActions({ children }){
         <div className="settings__actions">
             <Button
                 disabled={ !hasChanges }
-                isLarge
                 isPrimary
                 onClick={ () => onSaveClicked() }
             >
@@ -51,7 +50,6 @@ export default function SettingsActions({ children }){
             </Button>
             <Button
                 disabled={ !hasChanges }
-                isLarge
                 isSecondary
                 onClick={ () => onDiscardClicked() }
             >
@@ -59,7 +57,6 @@ export default function SettingsActions({ children }){
             </Button>
             <ConfirmButton
                 disabled={ !canReset }
-                isLarge
                 isDestructive
                 dialogTitle={ __( 'Confirm reset', 'foopb' ) }
                 dialogMessage={ __( 'Are you sure you want to reset all options back to their defaults?', 'foopb' ) }
