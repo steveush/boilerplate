@@ -1,12 +1,11 @@
 import "./index.scss";
 
-import { RadioControl } from "@wordpress/components";
+import { TextControl } from "@wordpress/components";
 import classNames from "classnames";
 import { useSettingsContext } from "../../../../utils";
 
-export default function SettingsRadio( {
+export default function SettingsText( {
                             className,
-                            orientation = "horizontal",
                             fp_key,
                             ...props
                         } ) {
@@ -16,10 +15,10 @@ export default function SettingsRadio( {
     if ( !isLoaded ) return null;
 
     return (
-        <RadioControl
+        <TextControl
             { ...props }
-            className={ classNames( 'fp-settings-radio', className, orientation ) }
-            selected={ getValue( fp_key ) }
+            className={ classNames( 'fp-settings-text', className ) }
+            value={ getValue( fp_key ) }
             onChange={ ( value ) => setValue( fp_key, value ) }
         />
     );

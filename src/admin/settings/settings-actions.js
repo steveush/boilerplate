@@ -7,8 +7,11 @@ import { useSnackbar } from "./hooks/use-snackbar";
 
 export default function SettingsActions({ children }){
 
-    const [ { hasChanges, canReset }, { save, reset, discard } ] = useSettingsContext();
+    const [ { hasChanges, canReset, isLoaded }, { save, reset, discard } ] = useSettingsContext();
     const { actions: { createSuccessSnackbar, createErrorSnackbar } } = useSnackbar();
+
+    // If settings are still being loaded, then render nothing.
+    if ( !isLoaded ) return null;
 
     const onDiscardClicked = () => {
         if ( discard() ){
@@ -22,7 +25,7 @@ export default function SettingsActions({ children }){
         save()
             .then( ()=> createSuccessSnackbar( __( "Save successful...", "foobp" ) ) )
             .catch( ( reason ) => {
-                console.error( reason );
+                console.error( reason.responseJSON );
                 createErrorSnackbar( __( "Save failed!", "foobp" ) );
             } );
     };
@@ -31,7 +34,7 @@ export default function SettingsActions({ children }){
         reset()
             .then( ()=> createSuccessSnackbar( __( "Reset successful...", "foobp" ) ) )
             .catch( ( reason ) => {
-                console.error( reason );
+                console.error( reason.responseJSON );
                 createErrorSnackbar( __( "Reset failed!", "foobp" ) );
             } );
     };
@@ -59,7 +62,7 @@ export default function SettingsActions({ children }){
                 isLarge
                 isDestructive
                 dialogTitle={ __( 'Confirm reset', 'foopb' ) }
-                dialogMessage={ __( 'Are you sure you want to reset all options back to their defaults?' ) }
+                dialogMessage={ __( 'Are you sure you want to reset all options back to their defaults?', 'foopb' ) }
                 onConfirmClick={ () => onResetClicked() }
             >
                 { __( 'Reset to defaults', 'foopb' ) }

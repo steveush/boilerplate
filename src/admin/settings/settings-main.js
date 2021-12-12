@@ -10,7 +10,8 @@ import {
     SettingsPanelRow,
     SettingsRadio,
     SettingsTabs,
-    SettingsUnknown
+    SettingsUnknown,
+    SettingsText
 } from "./components";
 
 export default function SettingsMain({ components }){
@@ -54,6 +55,8 @@ export default function SettingsMain({ components }){
                     return <SettingsPanelRow { ...props } />;
                 case 'radio':
                     return <SettingsRadio { ...props } />;
+                case 'text':
+                    return <SettingsText { ...props } />;
                 default:
                     return <SettingsUnknown component={ component } />;
             }

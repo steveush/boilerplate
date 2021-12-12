@@ -2,7 +2,7 @@ import "./index.scss";
 
 import { Icon } from "@wordpress/components";
 
-function SettingsUnknown( { component } ){
+export default function SettingsUnknown( { component } ){
     const json = JSON.stringify( component, null, '\t' );
     return (
         <div className="fp-settings-unknown">
@@ -11,5 +11,3 @@ function SettingsUnknown( { component } ){
         </div>
     );
 }
-
-export default SettingsUnknown;
