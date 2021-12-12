@@ -112,3 +112,26 @@ function array_set( &$toArray, $key, $value ){
     }
     return false;
 }
+
+/**
+ * Merges an array of default values recursively into a target array.
+ *
+ * @param $defaults
+ * @param $target
+ *
+ * @return array
+ */
+function array_defaults( $target, $defaults ) {
+	$result = (array) $defaults;
+
+	foreach ( $target as $key => $value ) {
+		if ( is_array( $value ) && isset( $result[ $key ] ) ) {
+			$result[ $key ] = array_defaults( $value, $result[ $key ] );
+		}
+		else {
+			$result[ $key ] = $value;
+		}
+	}
+
+	return $result;
+}

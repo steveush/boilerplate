@@ -14,6 +14,9 @@
 				        'type' => 'string',
 				        'required' => true,
 				        'minLength' => 1
+			        ),
+			        'someToggle' => array(
+				        'type' => 'boolean',
 			        )
 		        )
 	        ),

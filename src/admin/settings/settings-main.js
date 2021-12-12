@@ -11,7 +11,8 @@ import {
     SettingsRadio,
     SettingsTabs,
     SettingsUnknown,
-    SettingsText
+    SettingsText,
+    SettingsToggle
 } from "./components";
 
 export default function SettingsMain({ components }){
@@ -80,6 +81,8 @@ export default function SettingsMain({ components }){
                     return <SettingsRadio { ...props } />;
                 case 'text':
                     return <SettingsText { ...props } />;
+                case 'toggle':
+                    return <SettingsToggle { ...props } />;
                 default:
                     return <SettingsUnknown component={ component } />;
             }

@@ -10,7 +10,7 @@ use FooPlugins\PluginBoilerplate\Traits\With_Singleton;
  * Assumes after all checks have been made, and all is good to go!
  */
 
-if ( !class_exists( 'FooPlugins\PluginBoilerplate\Init' ) ) {
+if ( !class_exists( __NAMESPACE__ . '\Init' ) ) {
 
 	class Init {
 		use With_Singleton;
@@ -24,6 +24,9 @@ if ( !class_exists( 'FooPlugins\PluginBoilerplate\Init' ) ) {
 //				load_plugin_textdomain( FOOBAR_SLUG, false, plugin_basename( FOOBAR_FILE ) . '/languages/' );
 //			} );
 
+			// Check for a new version of the plugin.
+			add_action( 'plugins_loaded', array( $this, 'perform_version_check' ) );
+
             Settings::get_instance();
 
 			if ( is_admin() ) {
@@ -35,14 +38,18 @@ if ( !class_exists( 'FooPlugins\PluginBoilerplate\Init' ) ) {
 //			add_action( 'init', array( $this, 'test' ) );
 		}
 
-		public function test(){
+		/**
+		 * Perform a check to see if the plugin has been updated
+		 */
+		public function perform_version_check() {
+			if ( get_site_option( OPTION_VERSION ) != VERSION ) {
+				//This code will run every time the plugin is updated
 
-			$theme = $this->get_option( "style.theme" );
+				do_action( HOOK_ACTION_UPDATED );
 
-			$this->set_option( "style.theme", "flat" );
-
-			$t = '';
-
+				//set the current version, so that this does not run again until the next update!
+				update_site_option( OPTION_VERSION, VERSION );
+			}
 		}
 	}
 }

@@ -25,9 +25,20 @@
 				                            'fp_type' => 'text',
 				                            'label' => __( 'Some Text', 'foobp' ),
 				                            'help' => __( 'Enter some text. It is required!', 'foopb' ),
+			                            ),
+		                            )
+	                            ),
+	                            array(
+		                            'fp_type' => 'panel-row',
+		                            'fp_components' => array(
+			                            array(
+				                            'fp_key' => 'general.someToggle',
+				                            'fp_type' => 'toggle',
+				                            'label' => __( 'Some Toggle', 'foobp' ),
+				                            'help' => __( 'Turn me on or off!', 'foopb' ),
 			                            )
 		                            )
-	                            )
+	                            ),
                             )
                         ),
                         array(
