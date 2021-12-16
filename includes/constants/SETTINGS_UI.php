@@ -39,6 +39,67 @@
 			                            )
 		                            )
 	                            ),
+	                            array(
+		                            'fp_type' => 'panel-row',
+		                            'fp_components' => array(
+			                            array(
+				                            'fp_key' => 'general.select',
+				                            'fp_type' => 'select',
+				                            'label' => __( 'Select', 'foobp' ),
+				                            'help' => __( 'Choose an option.', 'foopb' ),
+				                            'options' => array(
+					                            array(
+						                            'label' => __( 'Red', 'foobp' ),
+						                            'value' => 'red'
+					                            ),
+					                            array(
+						                            'label' => __( 'Blue', 'foobp' ),
+						                            'value' => 'blue'
+					                            ),
+					                            array(
+						                            'label' => __( 'Yellow', 'foobp' ),
+						                            'value' => 'yellow'
+					                            ),
+					                            array(
+						                            'label' => __( 'Green', 'foobp' ),
+						                            'value' => 'green'
+					                            ),
+				                            )
+			                            )
+		                            )
+	                            ),
+	                            array(
+		                            'fp_type' => 'panel-row',
+		                            'fp_components' => array(
+			                            array(
+				                            'fp_key' => 'general.range',
+				                            'fp_type' => 'range',
+				                            'label' => __( 'Number of things', 'foobp' ),
+				                            'help' => __( 'Select a number', 'foopb' ),
+				                            'step' => 2,
+				                            'min' => 10,
+				                            'max' => 100,
+				                            'marks' => array(
+					                            array(
+						                            'label' => __( '10', 'foobp' ),
+						                            'value' => 10
+					                            ),
+					                            array(
+						                            'label' => __( '20', 'foobp' ),
+						                            'value' => 20
+					                            ),
+					                            array(
+						                            'label' => __( '50', 'foobp' ),
+						                            'value' => 50
+					                            ),
+					                            array(
+						                            'label' => __( '80', 'foobp' ),
+						                            'value' => 80
+					                            ),
+				                            )
+			                            )
+		                            )
+	                            ),
                             )
                         ),
                         array(

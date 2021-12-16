@@ -12,7 +12,9 @@ import {
     SettingsTabs,
     SettingsUnknown,
     SettingsText,
-    SettingsToggle
+    SettingsToggle,
+    SettingsSelect,
+    SettingsRange
 } from "./components";
 
 export default function SettingsMain({ components }){
@@ -83,6 +85,10 @@ export default function SettingsMain({ components }){
                     return <SettingsText { ...props } />;
                 case 'toggle':
                     return <SettingsToggle { ...props } />;
+                case 'select':
+                    return <SettingsSelect { ...props } />;
+                case 'range':
+                    return <SettingsRange { ...props } />;
                 default:
                     return <SettingsUnknown component={ component } />;
             }

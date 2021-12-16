@@ -17,6 +17,13 @@
 			        ),
 			        'someToggle' => array(
 				        'type' => 'boolean',
+			        ),
+			        'select' => array(
+				        'type' => 'string',
+				        'enum' => array( 'red', 'green', 'blue', 'yellow' )
+			        ),
+			        'range' => array(
+				        'type' => 'integer'
 			        )
 		        )
 	        ),

@@ -6,3 +6,5 @@ export { default as SettingsError } from "./error";
 export { default as SettingsTabs } from "./tabs";
 export { default as SettingsText } from "./text";
 export { default as SettingsToggle } from "./toggle";
+export { default as SettingsSelect } from "./select";
+export { default as SettingsRange } from "./range";
